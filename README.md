@@ -5,9 +5,9 @@ Going over Redux once more
 Store -> Provider -> Containers -> Components -> Users ->: Actions -> Reducers -> Store
 
 Store: All your applications state/data
-Prodiver: Makes store available to all  containers
+Provider: Makes store available to all  containers
 Containers: fetch apps state data and use it to render (display) components
-Actions: Any change made to the applications state
+Actions: Any change made by a user
 Reducers: Take in actions and update part of the state
 
 -----
@@ -68,4 +68,24 @@ Containers:
     export default connect(mapStateToProps)(*ComponentName*)
 
 ------------------------------------
+
+Actions:
+
+- Action creators (the functions in the actions folder) return actions
+- Every action has a type and a payload
+Type: Describes the change (ex: )
+Payload: Describes the item that the action is taking place on (parameter)
+
+- Make a new file for action creators and export each completed one (returns a type and payload in a JSON object)
+- Import each action creator into the file you will use it in
+- In that file create a mapDispatchToProps with an argument of dispatch and return bindActionCreators (that you imported earlier from 'redux')
+- bindActionCreators will take a JSON object as an argument with the key as a foobar name and the value as the action creator that we just imported from the actions folder
+- Pass dispatch as bindActionCreators's second argument
+- Finally, pass mapDispatchToProps into connect at the bottom
+
+    function mapDispatchToProps(dispatch) {
+        return bindActionCreators({selectUser: selectUser}, dispatch)
+    }
+
+    export default connect(mapStateToProps, mapDispatchToProps)(UserList)
 
