@@ -6,18 +6,17 @@ import {selectUser} from '../actions/index'
 
 class UserList extends Component {
 
-    createListItems(){
-        return this.props.users.map(item => {
-            return(
-                <li onClick={() => this.props.selectUser(item)} key={item.id}>{`${item.first}, ${item.last}`}</li>
-            )
-        })
-    }
 
     render() {
         return(
             <ul>
-                {this.createListItems()}
+                {this.props.users.map(item => { return ( 
+                <li 
+                onClick={() => this.props.selectUser(item)} 
+                key={item.id} >
+                {`${item.first}, ${item.last}`}
+                </li>   )
+        })}
             </ul>
         )
     }
